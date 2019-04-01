@@ -1,0 +1,24 @@
+<div id="main-items">
+  <button (click)="addItemForm()">Add Item</button>
+  <app-item></app-item>
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Buy Price</th>
+        <th>Sell Price</th>
+        <th>Highest Market Offer</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of offers">
+        <td>{{ item.itemName }}</td>
+        <td>{{ item.buyPrice }}</td>
+        <td>{{ item.sellPrice }}</td>
+        <td>{{ item.highestMarketPrice }}</td>
+        <td><span (click)="deleteOffer(item.id)">x</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

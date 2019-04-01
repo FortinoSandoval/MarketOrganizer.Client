@@ -1,0 +1,21 @@
+<div class="add-item">
+  <form #myForm="ngForm" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
+    <label for="item-name">
+      Item Name:
+      <input type="text" name="item-name" required [(ngModel)]="model.ItemName">
+    </label>
+    <label for="buy-price">
+      Buying Price:
+      <input type="number" name="buy-price" required [(ngModel)]="model.BuyPrice">
+    </label>
+    <label for="sell-price">
+      Selling Price:
+      <input type="number" name="sell-price" required [(ngModel)]="model.SellPrice">
+    </label>
+    <label for="highest-price">
+      Highest Market Price:
+      <input type="number" name="highest-price" required [(ngModel)]="model.HighestMarketPrice">
+    </label>
+    <button type="submit">Add</button>
+  </form>
+</div>
