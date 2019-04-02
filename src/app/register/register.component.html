@@ -1,0 +1,19 @@
+<div id="register-page">
+    <section class="register-section">
+      <h2>Register</h2>
+      <form #myForm="ngForm" class="register-form" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
+        <label for="username">
+          <input type="text" placeholder="Username" class="register-input" name="username" required [(ngModel)]="model.Username">
+        </label>
+        <label for="password">
+          <input type="password" placeholder="Password" class="register-input" name="password" required [(ngModel)]="model.Password">
+        </label>
+        <label for="password2">
+          <input type="password" placeholder="Repeat your password" class="register-input" name="password2" required [(ngModel)]="model.Password2">
+          <span *ngIf="matchError">Passwords must match</span>
+        </label>
+        <button type="submit" class="submit-btn" [disabled]="!canRegister || model.Password !== model.Password2">Login</button>
+      </form>
+      <a class="login" routerLink="/login">Back to login</a>
+    </section>
+  </div>
