@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from './_services/auth.service';
 
 @NgModule({
    declarations: [
@@ -31,7 +32,8 @@ import { RegisterComponent } from './register/register.component';
       AppRoutingModule
    ],
    providers: [
-      ItemService
+      ItemService,
+      AuthService
    ],
    bootstrap: [
       AppComponent

@@ -4,6 +4,7 @@
       <form #myForm="ngForm" class="register-form" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
         <label for="username">
           <input type="text" placeholder="Username" class="register-input" name="username" required [(ngModel)]="model.Username">
+          <span class="error" *ngIf="alreadyExist">Username already exist, please enter a different one</span>
         </label>
         <label for="password">
           <input type="password" placeholder="Password" class="register-input" name="password" required [(ngModel)]="model.Password">
