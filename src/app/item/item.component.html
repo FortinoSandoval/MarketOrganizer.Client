@@ -1,21 +1,43 @@
-<div class="add-item">
-  <form #myForm="ngForm" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
-    <label for="item-name">
-      Item Name:
-      <input type="text" name="item-name" required [(ngModel)]="model.ItemName">
-    </label>
-    <label for="buy-price">
-      Buying Price:
-      <input type="number" name="buy-price" required [(ngModel)]="model.BuyPrice">
-    </label>
-    <label for="sell-price">
-      Selling Price:
-      <input type="number" name="sell-price" required [(ngModel)]="model.SellPrice">
-    </label>
-    <label for="highest-price">
-      Highest Market Price:
-      <input type="number" name="highest-price" required [(ngModel)]="model.HighestMarketPrice">
-    </label>
-    <button type="submit">Add</button>
-  </form>
-</div>
+<article class="page item-page">
+  <header class="page-header">
+    <h3>Add Some Items</h3>
+  </header>
+  <main class="page-main">
+    <form class="item-form" #itemForm="ngForm" name="form" (ngSubmit)="onSubmit(itemForm.form)">
+      <section class="item-form__section">
+        <label class="item-form__label" for="item-name">
+          Item Name:
+        </label>
+        <input class="item-form__input" type="text" name="ItemName" required [(ngModel)]="item.ItemName">
+      </section>
+      <section class="item-form__section">
+        <label class="item-form__label" for="buy-price">
+          Buying Price:
+        </label>
+        <input class="item-form__input" type="number" name="BuyPrice" required [(ngModel)]="item.BuyPrice">
+      </section>
+      <section class="item-form__section">
+        <label class="item-form__label" for="sell-price">
+          Selling Price:
+        </label>
+        <input class="item-form__input" type="number" name="SellPrice" required [(ngModel)]="item.SellPrice">
+      </section>
+      <section class="item-form__section">
+        <label class="item-form__label" for="highest-price">
+          Highest Market Price:
+        </label>
+        <input class="item-form__input" type="number" name="HighestMarketPrice" required
+          [(ngModel)]="item.HighestMarketPrice">
+      </section>
+      <section class="item-form__section">
+        <button type="submit">Add</button>
+      </section>
+    </form>
+    <ul>
+      <li *ngFor="let control of itemForm.form.controls | keyvalue">
+        {{control.key}}: <span *ngFor="let error of control.value.errors | keyvalue">
+          {{ error.key ? error.key : 'valid' }}</span>
+      </li>
+    </ul>
+  </main>
+</article>

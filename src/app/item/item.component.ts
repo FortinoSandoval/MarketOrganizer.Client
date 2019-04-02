@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../_services/item.service';
+import { Item } from '../interfaces';
+import { NgForm, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.less']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent {
+  item: Item = {};
 
   constructor(private itemService: ItemService) { }
-  model: any = {};
 
-
-  ngOnInit() {
-  }
-
-  onSubmit(form) {
-    this.itemService.createOffer(this.model).subscribe(() => {
+  onSubmit(form: NgForm) {
+    this.itemService.createOffer(this.item).subscribe(() => {
       form.reset();
     });
   }
