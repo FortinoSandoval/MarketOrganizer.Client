@@ -1,4 +1,15 @@
 <div id="login-page">
-  <h1>Login page</h1>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum veniam corrupti, explicabo doloribus amet saepe quos molestias! Dignissimos libero enim, error accusantium fuga voluptate est vitae, dolores debitis nisi ab.</p>
+  <section class="login-section">
+    <h2>Login</h2>
+    <form #myForm="ngForm" class="login-form" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
+      <label for="username">
+        <input type="text" placeholder="Username" class="login-input" name="username" required [(ngModel)]="model.Username">
+      </label>
+      <label for="password">
+        <input type="password" placeholder="Password" class="login-input" name="password" required [(ngModel)]="model.Password">
+      </label>
+      <button type="submit" class="submit-btn" [disabled]="!canLogin">Login</button>
+    </form>
+    <a class="register" routerLink="/register">Need an account?</a>
+  </section>
 </div>

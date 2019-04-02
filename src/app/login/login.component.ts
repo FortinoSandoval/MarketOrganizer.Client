@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
+  model: any = {};
+  canLogin: boolean = true;
 
   ngOnInit() {
+  }
+
+  onSubmit(form) {
+    this.canLogin = false;
   }
 
 }
