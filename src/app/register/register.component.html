@@ -12,7 +12,7 @@
           <input type="password" placeholder="Repeat your password" class="register-input" name="password2" required [(ngModel)]="model.Password2">
           <span *ngIf="matchError">Passwords must match</span>
         </label>
-        <button type="submit" class="submit-btn" [disabled]="!canRegister || model.Password !== model.Password2">Login</button>
+        <button type="submit" class="submit-btn" [disabled]="!canRegister || model.Password !== model.Password2">Register</button>
       </form>
       <a class="login" routerLink="/login">Back to login</a>
     </section>
