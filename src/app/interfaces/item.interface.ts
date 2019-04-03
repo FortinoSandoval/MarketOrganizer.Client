@@ -1,7 +1,7 @@
 export interface Item {
-  Id?: number;
-  ItemName?: string;
-  BuyPrice?: number;
-  SellPrice?: number;
-  HighestMarketPrice?: number;
+  id?: number;
+  itemName?: string;
+  buyPrice?: number;
+  sellPrice?: number;
+  highestMarketPrice?: number;
 }
