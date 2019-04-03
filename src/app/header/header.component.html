@@ -1,0 +1,14 @@
+<nav id="nav">
+  <div class="main">
+    <a class="title" routerLink="/">Market Organizer</a>
+  </div>
+  <div class="container-fluid">
+    <div id="menu">
+      <ul>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/login" (click)="logout()">Logout</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/items">Items</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

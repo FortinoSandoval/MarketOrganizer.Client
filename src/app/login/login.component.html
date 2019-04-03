@@ -1,0 +1,16 @@
+<article class="login-page">
+  <main class="login-section">
+    <h2>Login</h2>
+    <form #loginForm="ngForm" class="login-form" name="form" (ngSubmit)="loginForm.form.valid && onSubmit(loginForm.form)">
+      <label for="username">
+        <input type="text" placeholder="Username" class="login-page__login-input" name="username" required [(ngModel)]="model.Username">
+      </label>
+      <label for="password">
+        <input type="password" placeholder="Password" class="login-page__login-input" name="password" required [(ngModel)]="model.Password">
+        <span class="login-page__error" *ngIf="invalidCredentials">Invalid credentials</span>
+      </label>
+      <button type="submit" class="login-page__submit-btn" [disabled]="!canLogin">Login</button>
+    </form>
+    <a class="login-page__register" routerLink="/register">Need an account?</a>
+  </main>
+</article>
