@@ -10,7 +10,7 @@ import { User } from '../interfaces';
 })
 export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
-  item: User = {};
+  user: User = {};
   canRegister = true;
   matchError = false;
   alreadyExist = false;
@@ -21,15 +21,15 @@ export class RegisterComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    if (this.item.Password !== this.item.Password2) {
+    if (this.user.Password !== this.user.Password2) {
       this.matchError = true;
     }
     this.matchError = false;
     this.canRegister = false;
-    this.authService.register(this.item).subscribe(
+    this.authService.register(this.user).subscribe(
       () => {
         this.canRegister = true;
-        this.item = {};
+        this.user = {};
         this.router.navigateByUrl('/login');
       },
       ({ error }) => {

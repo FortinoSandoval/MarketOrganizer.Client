@@ -1,3 +1,4 @@
+import { AuthGuard } from './_guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'items',
-    component: ItemsComponent
+    component: ItemsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
