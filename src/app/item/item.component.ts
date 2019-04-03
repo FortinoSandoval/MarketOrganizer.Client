@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ItemService } from '../_services/item.service';
 import { Item } from '../interfaces';
 
 @Component({
@@ -10,7 +9,7 @@ import { Item } from '../interfaces';
 export class ItemComponent {
   @Input() item: Item = {};
   @Output() itemSave: EventEmitter<Item> = new EventEmitter();
-  constructor(private itemService: ItemService) { }
+  constructor() { }
 
   onSubmit() {
     const item: Item = Object.assign({}, this.item);

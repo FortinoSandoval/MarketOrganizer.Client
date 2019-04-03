@@ -9,10 +9,9 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
   model: any = {};
-  canLogin: boolean = true;
+  canLogin = true;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form) {
     this.canLogin = false;

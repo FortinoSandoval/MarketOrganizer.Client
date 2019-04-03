@@ -1,20 +1,20 @@
-<div id="register-page">
+<div class="register-page">
     <section class="register-section">
       <h2>Register</h2>
-      <form #myForm="ngForm" class="register-form" name="form" (ngSubmit)="myForm.form.valid && onSubmit(myForm.form)">
+      <form #registerForm="ngForm" class="register-form" name="form" (ngSubmit)="registerForm.form.valid && onSubmit(registerForm.form)">
         <label for="username">
-          <input type="text" placeholder="Username" class="register-input" name="username" required [(ngModel)]="model.Username">
-          <span class="error" *ngIf="alreadyExist">Username already exist, please enter a different one</span>
+          <input type="text" placeholder="Username" class="register-form__register-input" name="username" required [(ngModel)]="item.Username">
+          <span class="register-form__error" *ngIf="alreadyExist">Username already exist, please enter a different one</span>
         </label>
         <label for="password">
-          <input type="password" placeholder="Password" class="register-input" name="password" required [(ngModel)]="model.Password">
+          <input type="password" placeholder="Password" class="register-form__register-input" name="password" required [(ngModel)]="item.Password">
         </label>
         <label for="password2">
-          <input type="password" placeholder="Repeat your password" class="register-input" name="password2" required [(ngModel)]="model.Password2">
+          <input type="password" placeholder="Repeat your password" class="register-form__register-input" name="password2" required [(ngModel)]="item.Password2">
           <span *ngIf="matchError">Passwords must match</span>
         </label>
-        <button type="submit" class="submit-btn" [disabled]="!canRegister || model.Password !== model.Password2">Register</button>
+        <button type="submit" class="register-form__submit-btn" [disabled]="!canRegister || item.Password !== item.Password2">Register</button>
       </form>
-      <a class="login" routerLink="/login">Back to login</a>
+      <a class="register-form__login" routerLink="/login">Back to login</a>
     </section>
   </div>

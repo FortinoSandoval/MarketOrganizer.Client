@@ -1,6 +1,7 @@
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../interfaces';
 
 @Component({
   selector: 'app-register',
@@ -8,28 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.less']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
-  model: any = {};
-  canRegister: boolean = true;
-  matchError: boolean = false;
-  alreadyExist: boolean = false;
+  constructor(private authService: AuthService, private router: Router) { }
+  item: User = {};
+  canRegister = true;
+  matchError = false;
+  alreadyExist = false;
 
   ngOnInit() {}
 
   onSubmit(form) {
-    if (form.invalid) return;
-    if (this.model.Password !== this.model.Password2) this.matchError = true;
+    if (form.invalid) {
+      return;
+    }
+    if (this.item.Password !== this.item.Password2) {
+      this.matchError = true;
+    }
     this.matchError = false;
     this.canRegister = false;
-    console.log('aqui');
-    this.authService.register(this.model).subscribe(
+    this.authService.register(this.item).subscribe(
       () => {
         this.canRegister = true;
-        this.model = {};
+        this.item = {};
         this.router.navigateByUrl('/login');
       },
       ({ error }) => {
-        if (error === 'User already exist') this.alreadyExist = true;
+        if (error === 'User already exist') {
+          this.canRegister = true;
+          this.alreadyExist = true;
+        }
       }
     );
   }
