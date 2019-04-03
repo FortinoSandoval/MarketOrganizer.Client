@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
       this.matchError = true;
     }
     this.matchError = false;
+    return;
     this.canRegister = false;
     this.authService.register(this.user).subscribe(
       () => {
