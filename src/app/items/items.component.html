@@ -1,6 +1,7 @@
 <div id="main-items">
   <button (click)="toggleAddForm()">{{ showAddForm ? '-' : '+'}}</button>
   <app-item *ngIf="showAddForm" (itemSave)="onSave($event)" [item]="currentItem"></app-item>
+  <button *ngIf="currentItem.id" (click)="clearSelection()">Clear selection</button>
   <table>
     <thead>
       <tr>
@@ -12,12 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of offers">
+      <tr *ngFor="let item of offers" (click)="selectItem(item)">
         <td>{{ item.itemName }}</td>
         <td>{{ item.buyPrice }}</td>
         <td>{{ item.sellPrice }}</td>
         <td>{{ item.highestMarketPrice }}</td>
-        <td><span (click)="deleteOffer(item.id)">x</span></td>
+        <td><span (click)="deleteOffer($event, item.id)">x</span></td>
       </tr>
     </tbody>
   </table>
