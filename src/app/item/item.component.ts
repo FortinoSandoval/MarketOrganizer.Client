@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ItemService } from '../_services/item.service';
 import { Item } from '../interfaces';
-import { NgForm, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-item',
@@ -9,14 +8,13 @@ import { NgForm, ValidationErrors } from '@angular/forms';
   styleUrls: ['./item.component.less']
 })
 export class ItemComponent {
-  item: Item = {};
-
+  @Input() item: Item = {};
+  @Output() itemSave: EventEmitter<Item> = new EventEmitter();
   constructor(private itemService: ItemService) { }
 
-  onSubmit(form: NgForm) {
-    this.itemService.createOffer(this.item).subscribe(() => {
-      form.reset();
-    });
+  onSubmit() {
+    const item: Item = Object.assign({}, this.item);
+    this.itemSave.emit(item);
   }
 
 }
