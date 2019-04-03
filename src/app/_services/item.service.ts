@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Item } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,15 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  getOffers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}Items`);
+  getItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.baseUrl}Items`);
   }
 
-  // updateOffer(id: number, user: User) {
+  // updateOItem(id: number, user: User) {
   //   return this.http.put(`${this.baseUrl}users/${id}`, user);
   // }
 
-  createOffer(offer) {
-    console.log('creando oferta', offer);
+  createitem(offer: Item) {
     return this.http.post(`${this.baseUrl}Items`, offer);
   }
 
