@@ -1,6 +1,6 @@
 <div id="main-items">
   <button (click)="toggleAddForm()">{{ showAddForm ? '-' : '+'}}</button>
-  <app-item *ngIf="showAddForm"></app-item>
+  <app-item *ngIf="showAddForm" (itemSave)="onSave($event)" [item]="currentItem"></app-item>
   <table>
     <thead>
       <tr>
