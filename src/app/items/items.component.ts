@@ -1,44 +1,67 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemService } from '../_services/item.service';
 import { Item } from '../interfaces/item.interface';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.less']
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class ItemsComponent implements OnInit {
   offers: Item[] = [];
+  currentItem: Item = {};
   showAddForm = false;
-  getOffersSubscription: Subscription;
-  deleteItemSubscription: Subscription;
 
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.getOffers();
+    this.getItems();
   }
 
   toggleAddForm() {
     this.showAddForm = !this.showAddForm;
   }
 
-  ngOnDestroy(): void {
-    this.getOffersSubscription.unsubscribe();
-    this.deleteItemSubscription.unsubscribe();
+  selectItem(item) {
+    this.currentItem = Object.assign({}, item);
+    this.showAddForm = true;
   }
 
-  getOffers() {
-    this.getOffersSubscription = this.itemService.getOffers().subscribe(Items => {
-      this.offers = Items;
-    });
+  clearSelection() {
+    this.currentItem = {};
   }
 
-  deleteOffer(id) {
-    this.deleteItemSubscription = this.itemService.deleteItem(id).subscribe(() => {
-      this.getOffers();
-    });
+  async getItems() {
+    try {
+      const items = await this.itemService.getItems().toPromise()
+      this.offers = items;
+    } catch (error) {
+      // TODO: agregar un toast bonito
+      console.warn(error.message);
+    }
+  }
+
+  async onSave(item: Item) {
+    try {
+      await this.itemService.createitem(item).toPromise();
+    } catch (error) {
+      // TODO: agregar un toast bonito
+      console.warn(error.message);
+    }
+    this.clearSelection();
+    this.getItems();
+  }
+
+
+  async deleteItem(event: MouseEvent, id) {
+    event.stopPropagation();
+    try {
+      await this.itemService.deleteItem(id).toPromise();
+    } catch (error) {
+      // TODO: agregar un toast bonito
+      console.warn(error.message);
+    }
+    this.getItems();
   }
 
 }
