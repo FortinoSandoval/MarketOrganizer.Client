@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   matchError = false;
   alreadyExist = false;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSubmit(form) {
     if (form.invalid) {
@@ -23,9 +23,9 @@ export class RegisterComponent implements OnInit {
     }
     if (this.user.Password !== this.user.Password2) {
       this.matchError = true;
+      return;
     }
     this.matchError = false;
-    return;
     this.canRegister = false;
     this.authService.register(this.user).subscribe(
       () => {
