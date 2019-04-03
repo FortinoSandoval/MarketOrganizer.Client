@@ -1,8 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { ItemsComponent } from './items.component';
 
 describe('ItemsComponent', () => {
@@ -11,9 +8,9 @@ describe('ItemsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemsComponent ]
+      declarations: [ItemsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -24,5 +21,13 @@ describe('ItemsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should switch boolean value', () => {
+    expect(component.showAddForm).toBeFalsy();
+    // ejecutas un metodo de el componente
+    component.toggleAddForm();
+    // te aseguras que el cambio se haya hecho
+    expect(component.showAddForm).toBeTruthy();
   });
 });

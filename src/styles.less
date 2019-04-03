@@ -1,5 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --default-grid:
+    'page-header page-header' 20vh
+    'page-main page-main' 80vh
+    'page-footer page-footer' 20vh / auto;
+}
+
 body {
   margin: 0;
   padding: 0;
+}
+
+.page {
+  // agara el default, pero usa otra variable por si necesitas modificarlo a nivel clase en una pagina
+  --page-grid: var(--default-grid);
+  display: grid;
+  gap: 1.5em;
+  grid-template: var(--page-grid);
+}
+
+.page-header {
+  grid-area: page-header;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.page-main {
+  grid-area: page-main;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.page-footer {
+  grid-area: page-footer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+@media all and (max-width: 650px) {
+  :root {
+    --default-grid:
+      'page-header page-header' 20vh
+      'page-main page-main' 80vh
+      'page-footer page-footer' 20vh / auto;
+  }
 }
