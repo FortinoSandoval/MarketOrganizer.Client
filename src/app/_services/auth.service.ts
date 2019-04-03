@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../interfaces';
 
@@ -11,6 +11,8 @@ import { User } from '../interfaces';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private setLoggedin = new Subject<any>();
+  setLoggedinMethod = this.setLoggedin.asObservable();
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
@@ -22,6 +24,14 @@ export class AuthService {
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  get isLoggedIn() {
+    return this.currentUserValue ? true : false;
+  }
+
+  loggedIn() {
+    this.setLoggedin.next();
   }
 
   register(user) {

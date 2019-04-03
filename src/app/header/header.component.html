@@ -5,8 +5,9 @@
   <div class="container-fluid">
     <div id="menu">
       <ul>
-        <li class="active"><a routerLink="/login">Login</a></li>
-        <li><a routerLink="/items">Items</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/login" (click)="logout()">Logout</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/items">Items</a></li>
       </ul>
     </div>
   </div>

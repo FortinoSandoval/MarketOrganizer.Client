@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,14 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   model: any = {};
   canLogin = true;
   invalidCredentials = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.logout();
+  }
 
   onSubmit(form) {
     if (form.invalid) {
@@ -25,9 +28,11 @@ export class LoginComponent implements OnInit {
       .login(this.model)
       .pipe(first())
       .subscribe(
-        ({ token }) => {
+        () => {
           this.canLogin = true;
           this.model = {};
+          this.router.navigateByUrl('/items');
+          this.authService.loggedIn();
         },
         ({ error }) => {
           if (error === 'Invalid Username/Password') {
